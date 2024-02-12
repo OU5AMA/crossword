@@ -2,7 +2,9 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const app = express();
+// const dotenv = require('dotenv').config();
 
+const PORT = 8080;
 
 // Dummy users and puzzles data (replace with your my own database later)
 const users = [
@@ -52,7 +54,7 @@ app.post('/login', async(req, res)=>{
 });
 
 // Middleware for user authenticatation
-const autheticateUser = (req, res, next)=>{
+const authenticateUser = (req, res, next)=>{
     const token = req.headers.authorization?.split(' ')[1];
     if(!token){
         return res.status(401).json({message: 'Unauthorized'});
@@ -79,7 +81,7 @@ const authorizeAdmin = (req, res, next)=>{
 
 // CRUD operations for puzzles (example)
 
-app.get('/puzzles', authenticateUser, authorizaAdmin, (req, res) => {
+app.get('/puzzles', authenticateUser, authorizeAdmin, (req, res) => {
     // Create new puzzle
 });
 

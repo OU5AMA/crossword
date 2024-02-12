@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const app = express();
-// const dotenv = require('dotenv').config();
+const dotenv = require('dotenv').config();
 
 const PORT = 8080;
 

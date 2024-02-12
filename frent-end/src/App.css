@@ -1,0 +1,26 @@
+.crossword-puzzle {
+    display: flex;
+    flex-direction: column;
+}
+
+.crossword-row {
+    display: flex;
+}
+
+.crossword-box {
+    width: 40px;
+    height: 40px;
+    font-style: 1.2em;
+    text-transform: uppercase;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.black-box {
+    background: #000;
+    color: #fff;
+}
+
+.incorrect {
+    color: red;
+}

@@ -70,3 +70,6 @@ app.delete('/puzzles/:id', authenticateUser, authorizeAdmin, (req, res) =>{
     // Delete puzzle
 });
 
+app.listen(process.env.PORT, ()=>{
+    console.log(`Server is running on port ${PORT}`);
+});

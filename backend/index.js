@@ -6,9 +6,30 @@ const app = express();
 
 // Dummy users and puzzles data (replace with your my own database later)
 const users = [
-    { username: 'user', passwordHash: '$2b$10$BOPiW.Jzb/ZzavGuVsRJee.ks7xYGXrbhhDxX.3b6Y8l0qiq.JD2e' }, // password: password
-    { username: 'admin', passwordHash: '$2b$10$v3R5gIEqUoQaivVnt8YCTecdc8KJEXjwEZvHqGe1MSbUjX0miMBXq' } // password: adminpassword
+    // Example user data
   ];
+
+//Sign up new user
+app.post('/signup', async (req, res) =>{
+    const {username, password}=req.body;
+    if(!username || password){
+        return res.send(400).json({message: "Username and password are required"});
+    }
+
+    if(users.some(user=>user.username === username)){
+        return res.status(400).json({message: "Username already exists"});
+    }
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        users.push({username, passwordHash: hashedPassword});
+        return res.status(201).json({message: 'User created successfully'});
+    } catch (error) {
+        return res.status(500).json({message: 'Internal server error'});
+    }
+
+
+})
 
 const puzzles = [
     // example puzzle data

@@ -47,3 +47,11 @@ const autheticateUser = (req, res, next)=>{
 };
 
 
+// Middleware for admin authorization
+const authorizeAdmin = (req, res, next)=>{
+    if(req.user.username === 'admin'){
+        next();
+    }else{
+        return res.status(403).json({message: 'Forbidden'});
+    }
+};

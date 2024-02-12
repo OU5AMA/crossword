@@ -55,3 +55,18 @@ const authorizeAdmin = (req, res, next)=>{
         return res.status(403).json({message: 'Forbidden'});
     }
 };
+
+// CRUD operations for puzzles (example)
+
+app.get('/puzzles', authenticateUser, authorizaAdmin, (req, res) => {
+    // Create new puzzle
+});
+
+app.put('/puzzles/:id', authenticateUser, authorizeAdmin, (req, res)=>{
+    // Update puzzle
+});
+
+app.delete('/puzzles/:id', authenticateUser, authorizeAdmin, (req, res) =>{
+    // Delete puzzle
+});
+
